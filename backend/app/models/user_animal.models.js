@@ -1,11 +1,11 @@
 const sql = require("../configs/db.js");
 //Construtor
 const UserAnimalModel = function (user_animal) {
+  this.user_idusuario = user_animal.user_idusuario;
+  this.user_idanimal = user_animal.user_idanimal;
   this.contato = user_animal.contato;
   this.endereco = user_animal.endereco;
   this.data = user_animal.data;
-  this.animais_idanimal = user_animal.animais_idanimal;
-  this.usuario_idusuario = user_animal.usuario_idusuario;
 };
 
 //Seleciona todos os produtos
@@ -61,13 +61,13 @@ UserAnimalModel.create = (user_animal, result) => {
 //Atualizar produto por id
 UserAnimalModel.updateById = (id, user_animal, result) => {
   sql.query(
-    "UPDATE user_animal SET contato = ?, endereco = ?, data = ?, animais_idanimal = ?, usuario_idusuario = ?  WHERE iduser_animal = ?",
+    "UPDATE user_animal SET contato = ?, endereco = ?, data = ?, user_idusuario = ?, user_idanimal = ?  WHERE iduser_animal = ?",
     [
       user_animal.contato,
       user_animal.endereco,
       user_animal.data,
-      user_animal.animais_idanimal,
-      user_animal.usuario_idusuario,
+      user_animal.user_idusuario,
+      user_animal.user_idanimal,
       id,
     ],
     (err, res) => {

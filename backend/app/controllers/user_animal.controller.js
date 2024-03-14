@@ -38,8 +38,8 @@ exports.create = (req, res) => {
       !req.body.contato ||
       !req.body.endereco ||
       !req.body.data ||
-      !req.body.animais_idanimal ||
-      !req.body.usuario_idusuario
+      !req.body.user_idusuario||
+      !req.body.user_idanimal
   ) {
     res.status(400).send({
       message: "Conteúdo do corpo da requisição vazia.",
@@ -49,8 +49,8 @@ exports.create = (req, res) => {
         contato : req.body.contato,
         endereco : req.body.endereco,
         data : req.body.data,
-        animais_idanimal : req.body.animais_idanimal,
-        usuario_idusuario : req.body.usuario_idusuario,
+        user_idusuario : req.body.user_idusuario,
+        user_idanimal : req.body.user_idanimal,
     });
     user_animalModel.create(user_animal, (err, data) => {
       if (err) {
@@ -69,8 +69,8 @@ exports.update = (req, res) => {
     !req.body.contato ||
       !req.body.endereco ||
       !req.body.data ||
-      !req.body.animais_idanimal ||
-      !req.body.usuario_idusuario
+      !req.body.user_idusuario ||
+      !req.body.user_idanimal
   ) {
     res.status(400).send({
       message: "Conteúdo do corpo da requisição vazia.",
@@ -80,8 +80,8 @@ exports.update = (req, res) => {
         contato : req.body.contato,
         endereco : req.body.endereco,
         data : req.body.data,
-        animais_idanimal : req.body.animais_idanimal,
-        usuario_idusuario : req.body.usuario_idusuario,
+        user_idusuario : req.body.user_idusuario,
+        user_idanimal : req.body.user_idanimal,
     });
     user_animalModel.updateById(
       req.params.id,

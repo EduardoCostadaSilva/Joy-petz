@@ -5,6 +5,7 @@ exports.create = (req, res) => {
     !req.body.nome ||
     !req.body.sexo ||
     !req.body.idade ||
+    !req.body.foto ||
     !req.body.especie ||
     !req.body.descricao
   ) {
@@ -16,6 +17,7 @@ exports.create = (req, res) => {
       nome: req.body.nome,
       sexo: req.body.sexo,
       idade: req.body.idade,
+      foto: req.body.foto,
       especie: req.body.especie,
       descricao: req.body.descricao,
     });
@@ -66,6 +68,7 @@ exports.update = (req, res) => {
     !req.body.nome ||
     !req.body.sexo ||
     !req.body.idade ||
+    !req.body.foto ||
     !req.body.especie ||
     !req.body.descricao
   ) {
@@ -77,6 +80,7 @@ exports.update = (req, res) => {
       nome: req.body.nome,
       sexo: req.body.sexo,
       idade: req.body.idade,
+      foto: req.body.foto,
       especie: req.body.especie,
       descricao: req.body.descricao,
     });
