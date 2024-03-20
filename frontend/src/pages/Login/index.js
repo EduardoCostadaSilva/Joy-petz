@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../../services/api";
 import { Container, Form } from "./style";
-
+import Logo from "../../img/logo_joypetz.png";
 
 
 const SignIn = () => {
@@ -11,7 +11,6 @@ const SignIn = () => {
   const [senha, setSenha] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
-
   const handleSignIn = async (e) => {
     e.preventDefault();
     if (!nome || !email || !senha) {
@@ -29,9 +28,11 @@ const SignIn = () => {
   return (
     <Container>
       <Form onSubmit={handleSignIn}>
+      
+        <img src={Logo} alt="logo_joypetz" />
         <input
           type="text"
-          placeholder="Nome de usuário"
+          placeholder="Nome de usuario"
           onChange={(e) => setNome(e.target.value)}
         />
         <input
