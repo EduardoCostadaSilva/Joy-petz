@@ -1,25 +1,24 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../../services/api";
-import { Container, Form } from "./style";
-
-
+import { Container, Form, Meucomponente } from "./style";
+import Logo from "../../img/logo_joypetz.png";
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+//logo_joypetz.png
 
 const SignIn = () => {
-  const [nome, setNome] = useState("");
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
-
   const handleSignIn = async (e) => {
     e.preventDefault();
-    if (!nome || !email || !senha) {
+    if ( !email || !senha) {
       setError("Preencha email e senha para continuar!");
       return;
     }
     try {
-      const response = await api.post("/signin", { nome, email, senha });
+      const response = await api.post("/signin", { email, senha });
       localStorage.setItem("accessToken", response.data.accessToken);
       navigate("/app");
     } catch (err) {
@@ -29,11 +28,12 @@ const SignIn = () => {
   return (
     <Container>
       <Form onSubmit={handleSignIn}>
-        <input
-          type="text"
-          placeholder="Nome de usuário"
-          onChange={(e) => setNome(e.target.value)}
-        />
+        <AccountCircleIcon sx={{ 
+          fontSize: 100 }}
+        >
+
+        </AccountCircleIcon>  
+        <img src={Logo} alt="logo_joypetz" />
         <input
           type="email"
           placeholder="Endereço de Email"
