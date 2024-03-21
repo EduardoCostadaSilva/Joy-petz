@@ -8,11 +8,12 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-
 import HomeIcon from '@mui/icons-material/Home';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
 import PeopleIcon from '@mui/icons-material/People';
+import { Link } from 'react-router-dom';
+
 
 
 export default function AnchorTemporaryDrawer() {
@@ -59,7 +60,7 @@ export default function AnchorTemporaryDrawer() {
           <ListItem key={text} disablePadding>
             <ListItemButton>
               <ListItemIcon>
-                {index % 2 === 0 ? <PeopleIcon  sx={{ color:"#f34f8b" }} /> : <LocalPhoneIcon  sx={{ color:"#f34f8b" }} />  }
+                {index % 2 === 0 ? <Link><PeopleIcon  sx={{ color:"#f34f8b" }} /></Link> : <LocalPhoneIcon  sx={{ color:"#f34f8b" }} />  }
     
               </ListItemIcon>
              

@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../../services/api";
 import { Container, Form, Meucomponente } from "./style";
-import Logo from "../../img/logo_joypetz.png";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 //logo_joypetz.png
 
@@ -26,14 +25,17 @@ const SignIn = () => {
     }
   };
   return (
-    <Container>
+    <>
+    <Meucomponente><h1>Dale</h1></Meucomponente>
+    
+    <Container> 
       <Form onSubmit={handleSignIn}>
+       
         <AccountCircleIcon sx={{ 
-          fontSize: 100 }}
+          fontSize: 300 }}
         >
-
         </AccountCircleIcon>  
-        <img src={Logo} alt="logo_joypetz" />
+        
         <input
           type="email"
           placeholder="Endereço de Email"
@@ -48,6 +50,7 @@ const SignIn = () => {
         {error && <p>{error}</p>}
       </Form>
     </Container>
+    </>
   );
 };
 export default SignIn;
