@@ -2,10 +2,11 @@
 import React from "react";
 import PeopleIcon from "@mui/icons-material/People";
 import { Div } from "./style";
+import AnchorTemporaryDrawer from "../../components/Navbar";
 const QuemSomos = () => {
   return (
     <Div>        
-            
+        <AnchorTemporaryDrawer />   
          <h1> <PeopleIcon  sx={{ color:"#f34f8b" }} />Quem Somos</h1>
     
     

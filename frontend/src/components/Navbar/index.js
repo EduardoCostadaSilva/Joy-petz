@@ -8,8 +8,12 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
+
+import HomeIcon from '@mui/icons-material/Home';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
+import PeopleIcon from '@mui/icons-material/People';
+
 
 export default function AnchorTemporaryDrawer() {
   const [state, setState] = React.useState({
@@ -29,48 +33,59 @@ export default function AnchorTemporaryDrawer() {
 
   const list = (anchor) => (
     <Box
-      sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 250 }}
+      sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 250  }}
       role="presentation"
+     
       onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}
     >
-      <List>
-        {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
+      <List sx={{ color:"#f34f8b"}}>
+      
+        {['Home', 'Doar'].map((text, index) => (
           <ListItem key={text} disablePadding>
             <ListItemButton>
               <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                {index % 2 === 0 ? <HomeIcon  sx={{ color:"#f34f8b" }} /> : <FavoriteIcon  sx={{ color:"#f34f8b" }} />  }
+    
               </ListItemIcon>
+             
+              <ListItemText primary={text} />
+            </ListItemButton>
+          </ListItem>
+        ))}
+      </List>
+      <List sx={{ color:"#f34f8b" }}>
+        {['Quem somos', 'Contato'].map((text, index) => (
+          <ListItem key={text} disablePadding>
+            <ListItemButton>
+              <ListItemIcon>
+                {index % 2 === 0 ? <PeopleIcon  sx={{ color:"#f34f8b" }} /> : <LocalPhoneIcon  sx={{ color:"#f34f8b" }} />  }
+    
+              </ListItemIcon>
+             
               <ListItemText primary={text} />
             </ListItemButton>
           </ListItem>
         ))}
       </List>
       <Divider />
-      <List>
-        {['All mail', 'Trash', 'Spam'].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
+     
     </Box>
   );
 
   return (
     <div>
+      
       {['Menu'].map((anchor) => (
         <React.Fragment key={anchor}>
-          <Button onClick={toggleDrawer(anchor, true)}>{anchor}</Button>
+          <Button onClick={toggleDrawer(anchor, true)}
+          sx={{ color:"#f34f8b" }}
+          >{anchor}</Button>
           <Drawer
             anchor={anchor}
             open={state[anchor]}
             onClose={toggleDrawer(anchor, false)}
+            
           >
             {list(anchor)}
           </Drawer>

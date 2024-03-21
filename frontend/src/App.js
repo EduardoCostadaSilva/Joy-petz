@@ -1,10 +1,11 @@
-import Rotas from "./routes";
+import QuemSomos from "./pages/QuemSomos";
+
 
 
 function App() {
   return (
     <>
-      <Rotas />
+      <QuemSomos />
     </>
   );
 }
