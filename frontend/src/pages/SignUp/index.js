@@ -4,6 +4,7 @@ import { Form, Container } from "./style";
 import api from "../../services/api";
 
 const SignUp = () => {
+  const [nome, setNome] = useState("");
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
   const [tipo, setTipo] = useState("");
@@ -11,11 +12,12 @@ const SignUp = () => {
   const navigate = useNavigate();
   const handleSignUp = async (e) => {
     e.preventDefault();
-    if (!email || !senha) {
+
+    if (!nome || !email || !senha || !tipo) {
       setError("Preencha todos os dados para se cadastrar");
     } else {
       try {
-        await api.post("/signup", { email, senha, tipo });
+        await api.post("/signup", { nome, email, senha, tipo });
         navigate("/");
       } catch (err) {
         console.log(err);
@@ -27,7 +29,11 @@ const SignUp = () => {
     <Container>
       <Form onSubmit={handleSignUp}>
         {error && <p>{error}</p>}
-       
+        <input
+          type="text"
+          placeholder="Nome de usuário"
+          onChange={(e) => setNome(e.target.value)}
+        />
         <input
           type="email"
           placeholder="Endereço de email"
