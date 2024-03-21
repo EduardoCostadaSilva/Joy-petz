@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Form, Container } from "./style";
 import api from "../../services/api";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
 const SignUp = () => {
   const [nome, setNome] = useState("");
@@ -28,6 +29,11 @@ const SignUp = () => {
   return (
     <Container>
       <Form onSubmit={handleSignUp}>
+        <AccountCircleIcon
+          sx={{
+            fontSize: 300,
+          }}
+        ></AccountCircleIcon>
         {error && <p>{error}</p>}
         <input
           type="text"
@@ -50,7 +56,7 @@ const SignUp = () => {
           onChange={(e) => setTipo(e.target.value)}
         />
         <button type="submit">Cadastro de Usuário</button>
-        <Link to="/">Fazer Login</Link>
+        <Link to="/signin">Fazer Login</Link>
       </Form>
     </Container>
   );

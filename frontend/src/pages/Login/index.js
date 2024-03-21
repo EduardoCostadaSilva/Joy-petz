@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../../services/api";
 import { Container, Form, Meucomponente } from "./style";
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-//logo_joypetz.png
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
 const SignIn = () => {
   const [email, setEmail] = useState("");
@@ -12,7 +11,7 @@ const SignIn = () => {
   const navigate = useNavigate();
   const handleSignIn = async (e) => {
     e.preventDefault();
-    if ( !email || !senha) {
+    if (!email || !senha) {
       setError("Preencha email e senha para continuar!");
       return;
     }
@@ -26,30 +25,32 @@ const SignIn = () => {
   };
   return (
     <>
-    <Meucomponente><h1>Dale</h1></Meucomponente>
-    
-    <Container> 
-      <Form onSubmit={handleSignIn}>
-       
-        <AccountCircleIcon sx={{ 
-          fontSize: 300 }}
-        >
-        </AccountCircleIcon>  
-        
-        <input
-          type="email"
-          placeholder="Endereço de Email"
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <input
-          type="password"
-          placeholder="Senha"
-          onChange={(e) => setSenha(e.target.value)}
-        />
-        <button type="submit">Entrar</button>
-        {error && <p>{error}</p>}
-      </Form>
-    </Container>
+      <Meucomponente>
+        <img />
+      </Meucomponente>
+
+      <Container>
+        <Form onSubmit={handleSignIn}>
+          <AccountCircleIcon
+            sx={{
+              fontSize: 300,
+            }}
+          ></AccountCircleIcon>
+
+          <input
+            type="email"
+            placeholder="Endereço de Email"
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <input
+            type="password"
+            placeholder="Senha"
+            onChange={(e) => setSenha(e.target.value)}
+          />
+          <button type="submit">Entrar</button>
+          {error && <p>{error}</p>}
+        </Form>
+      </Container>
     </>
   );
 };
