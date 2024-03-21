@@ -17,6 +17,7 @@ export const NavItems = styled.div`
  display: ${props => (props.show ? 'flex' : 'none')};
  flex-direction: column;
  gap: 10px;
+ 
  }
 `;
 export const ToggleButton = styled.button`

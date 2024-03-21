@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import api from "../../services/api";
 import { Container, Form, Meucomponente } from "./style";
 import Logo from "../../img/logo_joypetz.png";
-import AccessibilityIcon from '@mui/icons-material/Accessibility';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 //logo_joypetz.png
 
 const SignIn = () => {
@@ -28,11 +28,11 @@ const SignIn = () => {
   return (
     <Container>
       <Form onSubmit={handleSignIn}>
-        <AccessibilityIcon sx={{ 
+        <AccountCircleIcon sx={{ 
           fontSize: 100 }}
         >
-          
-        </AccessibilityIcon>  
+
+        </AccountCircleIcon>  
         <img src={Logo} alt="logo_joypetz" />
         <input
           type="email"
