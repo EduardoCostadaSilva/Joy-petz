@@ -1,10 +1,10 @@
 import React from "react";
+import AnchorTemporaryDrawer from "../../components/Navbar";
 
-import SideMenu from "../../components/Navbar";
 const MainPage = () => {
   return (
     <div>
-      <SideMenu />
+      <AnchorTemporaryDrawer />
       <h2>Bem vindo à pagina principal</h2>
       {/* conteudo da pagina principal */}
     </div>

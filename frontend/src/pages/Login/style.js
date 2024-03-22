@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Meucomponente = styled.div`
   width: 300px;
   heigth: 300px; 
-  background-color: black; 
+  
 `;
 
 export const Container = styled.div`
@@ -11,6 +11,7 @@ export const Container = styled.div`
   align-items: center;
   justify-content: center;
   height: 100vh;
+  
 `;
 
 export const Form = styled.form`
