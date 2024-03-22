@@ -1,11 +1,13 @@
-import DoarPage from "./pages/Doar";
 import Rotas from "./routes";
+
+
+
 
 
 function App() {
   return (
     <>
-      <DoarPage />
+<Rotas />
     </>
   );
 }

@@ -1,11 +1,11 @@
 
 import React from "react";
 import PeopleIcon from "@mui/icons-material/People";
-import { Div } from "./style";
+import {  Body } from "./style";
 import AnchorTemporaryDrawer from "../../components/Navbar";
 const QuemSomos = () => {
   return (
-    <Div>        
+    <Body>        
         <AnchorTemporaryDrawer />   
          <h1> <PeopleIcon  sx={{ color:"#f34f8b" }} />Quem Somos</h1>
     
@@ -17,7 +17,7 @@ const QuemSomos = () => {
         que pode disponibilizar animais para a adoção e a pessoa que quer adotar
         o animal.
       </p>
-    </Div>
+    </Body>
   );
 };
 export default QuemSomos;

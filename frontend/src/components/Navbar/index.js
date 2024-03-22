@@ -1,15 +1,5 @@
 
 import * as React from "react";
-import Box from "@mui/material/Box";
-import Drawer from "@mui/material/Drawer";
-import Button from "@mui/material/Button";
-import List from "@mui/material/List";
-import Divider from "@mui/material/Divider";
-import ListItem from "@mui/material/ListItem";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemIcon from "@mui/material/ListItemIcon";
-import ListItemText from "@mui/material/ListItemText";
-import * as React from 'react';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import Button from '@mui/material/Button';
@@ -23,11 +13,7 @@ import HomeIcon from '@mui/icons-material/Home';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
 import PeopleIcon from '@mui/icons-material/People';
-import { Link } from 'react-router-dom';
-import HomeIcon from "@mui/icons-material/Home";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import LocalPhoneIcon from "@mui/icons-material/LocalPhone";
-import PeopleIcon from "@mui/icons-material/People";
+import { Link } from "react-router-dom";
 
 export default function AnchorTemporaryDrawer() {
   const [state, setState] = React.useState({
@@ -60,7 +46,7 @@ export default function AnchorTemporaryDrawer() {
           <ListItem key={text} disablePadding>
             <ListItemButton>
               <ListItemIcon>
-                {index % 2 === 0 ? <HomeIcon  sx={{ color:"#f34f8b" }} /> : <FavoriteIcon  sx={{ color:"#f34f8b" }} />  }
+                {index % 2 === 0 ? <HomeIcon  sx={{ color:"#f34f8b" }} /> : <Link to="/doar"><FavoriteIcon  sx={{ color:"#f34f8b" }} /></Link>  }
     
               </ListItemIcon>
 
