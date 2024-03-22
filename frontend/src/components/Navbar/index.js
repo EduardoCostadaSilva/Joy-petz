@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 import * as React from "react";
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
@@ -9,7 +9,6 @@ import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-=======
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
@@ -25,9 +24,6 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
 import PeopleIcon from '@mui/icons-material/People';
 import { Link } from 'react-router-dom';
-
->>>>>>> 12ed00b4c6f0cc9ec9aca6b1f56750328e55d878
-
 import HomeIcon from "@mui/icons-material/Home";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import LocalPhoneIcon from "@mui/icons-material/LocalPhone";
@@ -64,11 +60,8 @@ export default function AnchorTemporaryDrawer() {
           <ListItem key={text} disablePadding>
             <ListItemButton>
               <ListItemIcon>
-                {index % 2 === 0 ? (
-                  <HomeIcon sx={{ color: "#f34f8b" }} />
-                ) : (
-                  <FavoriteIcon sx={{ color: "#f34f8b" }} />
-                )}
+                {index % 2 === 0 ? <HomeIcon  sx={{ color:"#f34f8b" }} /> : <FavoriteIcon  sx={{ color:"#f34f8b" }} />  }
+    
               </ListItemIcon>
 
               <ListItemText primary={text} />
@@ -81,16 +74,15 @@ export default function AnchorTemporaryDrawer() {
           <ListItem key={text} disablePadding>
             <ListItemButton>
               <ListItemIcon>
-<<<<<<< HEAD
+
                 {index % 2 === 0 ? (
                   <PeopleIcon sx={{ color: "#f34f8b" }} />
                 ) : (
                   <LocalPhoneIcon sx={{ color: "#f34f8b" }} />
-                )}
-=======
-                {index % 2 === 0 ? <Link><PeopleIcon  sx={{ color:"#f34f8b" }} /></Link> : <LocalPhoneIcon  sx={{ color:"#f34f8b" }} />  }
+                )
+                }
     
->>>>>>> 12ed00b4c6f0cc9ec9aca6b1f56750328e55d878
+
               </ListItemIcon>
 
               <ListItemText primary={text} />
