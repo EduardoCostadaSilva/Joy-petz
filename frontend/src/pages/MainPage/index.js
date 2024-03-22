@@ -6,7 +6,7 @@ const MainPage = () => {
     <div>
       <AnchorTemporaryDrawer />
       <h2>Bem vindo à pagina principal</h2>
-      {/* conteudo da pagina principal */}
+      <p>tururu</p>
     </div>
   );
 };

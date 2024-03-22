@@ -46,7 +46,7 @@ export default function AnchorTemporaryDrawer() {
           <ListItem key={text} disablePadding>
             <ListItemButton>
               <ListItemIcon>
-                {index % 2 === 0 ? <HomeIcon  sx={{ color:"#f34f8b" }} /> : <FavoriteIcon  sx={{ color:"#f34f8b" }} />  }
+                {index % 2 === 0 ? <Link><HomeIcon  sx={{ color:"#f34f8b" }} /></Link> : <FavoriteIcon  sx={{ color:"#f34f8b" }} />  }
     
               </ListItemIcon>
              
