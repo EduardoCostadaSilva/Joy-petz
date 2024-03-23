@@ -1,36 +1,51 @@
 const animalModel = require("../models/animal.model.js");
+const multer = require('multer');
+
+// Configuração do multer para salvar as imagens no diretório 'uploads'
+const upload = multer({ dest: 'uploads/' });
+
+// Middleware do multer para o campo 'foto' do formulário
+const uploadSingle = upload.single('foto');
 
 exports.create = (req, res) => {
-  if (
-    !req.body.nome ||
-    !req.body.sexo ||
-    !req.body.idade ||
-    !req.body.foto ||
-    !req.body.especie ||
-    !req.body.descricao
-  ) {
-    res.status(400).send({
-      message: "Conteúdo do corpo da requisição vazia.",
-    });
-  } else {
-    const animal = new animalModel({
-      nome: req.body.nome,
-      sexo: req.body.sexo,
-      idade: req.body.idade,
-      foto: req.body.foto,
-      especie: req.body.especie,
-      descricao: req.body.descricao,
-    });
-    animalModel.create(animal, (err, data) => {
-      if (err) {
-        res.status(500).send({
-          message: err.message || "Ocorreu um erro",
-        });
-      } else {
-        res.send(data);
-      }
-    });
-  }
+  uploadSingle(req, res, function(err) {
+    if (err) {
+      // Um erro ocorreu ao fazer upload da imagem
+      return res.status(500).json({ message: 'Erro ao fazer upload da imagem.' });
+    }
+
+    if (
+      !req.body.nome ||
+      !req.body.sexo ||
+      !req.body.idade ||
+      !req.file || // Verifica se o campo de arquivo está presente
+      !req.body.especie ||
+      !req.body.descricao
+    ) {
+      // Se algum campo estiver faltando, retorna um erro 400
+      return res.status(400).json({
+        message: "Campos do formulário estão incompletos.",
+      });
+    } else {
+      const animal = new animalModel({
+        nome: req.body.nome,
+        sexo: req.body.sexo,
+        idade: req.body.idade,
+        foto: req.file.path, // Salva o caminho do arquivo de imagem
+        especie: req.body.especie,
+        descricao: req.body.descricao,
+      });
+      animalModel.create(animal, (err, data) => {
+        if (err) {
+          res.status(500).send({
+            message: err.message || "Ocorreu um erro",
+          });
+        } else {
+          res.send(data);
+        }
+      });
+    }
+  });
 };
 
 exports.findAll = (req, res) => {

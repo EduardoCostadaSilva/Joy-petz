@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../../services/api";
-import { Container, Form, Meucomponente } from "./style";
+import { Container, Form } from "./style";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
 const SignIn = () => {
@@ -25,9 +25,7 @@ const SignIn = () => {
   };
   return (
     <>
-      <Meucomponente>
-        <img />
-      </Meucomponente>
+      
 
       <Container>
         <Form onSubmit={handleSignIn}>

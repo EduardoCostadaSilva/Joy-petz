@@ -12,7 +12,7 @@ import Logout from "./pages/Logout";
 import SignUp from "./pages/SignUp";
 import Usuarios from "./pages/Usuarios";
 import Animal from "./pages/Animal";
-
+import Navbar from "./components/Navbar";
 
 
 const LoginPage = () => <Login />;
@@ -30,9 +30,11 @@ const AppPage = () => {
 
 const Rotas = () => (
   <Router>
+   <Navbar />
     <Routes>
       <Route path="/" element={<SignUpPage />} />
-      <Route path="/signin" element={< LoginPage/>} />
+      <Route path="/home" element={<MainPage/>} />
+      <Route path="/signin" element={<LoginPage />} />
       <Route path="/logout" element={<LogOutPage />} />
       <Route path="/app" element={<AppPage />} />
       <Route path="/usuarios" element={<UsuariosPage />} />
@@ -41,4 +43,5 @@ const Rotas = () => (
     </Routes>
   </Router>
 );
+
 export default Rotas;

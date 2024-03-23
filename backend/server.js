@@ -3,6 +3,23 @@ const express = require("express");
 const bodyParser = require('body-parser');
 
 const app = express();
+
+// configuração do multer
+const multer = require('multer');
+
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'uploads/'); // Indica o diretório de destino
+  },
+  filename: function (req, file, cb) {
+    // Gera um nome de arquivo único
+    cb(null, Date.now() + '-' + file.originalname);
+  }
+});
+
+const upload = multer({ storage: storage });
+
+
 //parser para requisições content-type:
 //application/x-www-form-urlencoded-json
 app.use((req, res, next) => {
