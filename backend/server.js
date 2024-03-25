@@ -17,8 +17,14 @@ const storage = multer.diskStorage({
   }
 });
 
-const upload = multer({ storage: storage });
+const upload = multer({ dest: 'uploads/'});
 
+app.post('/api/upload', upload.single('file'), (req, res) => {
+  // Aqui você deve salvar o arquivo no banco de dados
+  // req.file contém as informações do arquivo enviado
+  console.log('File uploaded:', req.file);
+  res.json({ message: 'Arquivo enviado com sucesso.' });
+});
 
 //parser para requisições content-type:
 //application/x-www-form-urlencoded-json
@@ -28,6 +34,7 @@ app.use((req, res, next) => {
   app.use(cors());
   next();
 });
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
 
@@ -43,6 +50,6 @@ app.get("/", (req, res) => {
     message: "API JP funcionando",
   });
 });
-app.listen(3001, () => {
-  console.log("Servidor rodando na porta 3001");
+app.listen(3077, () => {
+  console.log("Servidor rodando na porta 3077");
 });

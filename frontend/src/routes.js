@@ -12,13 +12,16 @@ import Logout from "./pages/Logout";
 import SignUp from "./pages/SignUp";
 import Usuarios from "./pages/Usuarios";
 import Animal from "./pages/Animal";
-import Navbar from "./components/Navbar";
+import ContactScreen from "./pages/Contato";
+import QuemSomos from "./pages/QuemSomos";
 
 
 const LoginPage = () => <Login />;
 const SignUpPage = () => <SignUp />;
 const UsuariosPage = () => <Usuarios />;
+const ContatoPage = () => <ContactScreen />;
 const AnimalPage = () => <Animal />;
+const QuemSomosPage = () => <QuemSomos />;
 const LogOutPage = () => <Logout />;
 const NotFoundPage = () => <h1>Página não encontrada.</h1>;
 const AppPage = () => {
@@ -30,15 +33,16 @@ const AppPage = () => {
 
 const Rotas = () => (
   <Router>
-   <Navbar />
+   
     <Routes>
-      <Route path="/" element={<SignUpPage />} />
+      <Route path="/" element={<LoginPage />} />
       <Route path="/home" element={<MainPage/>} />
-      <Route path="/signin" element={<LoginPage />} />
-      <Route path="/logout" element={<LogOutPage />} />
+      <Route path="/logout" element={<SignUpPage />} />
       <Route path="/app" element={<AppPage />} />
       <Route path="/usuarios" element={<UsuariosPage />} />
       <Route path="/doar" element={<AnimalPage />} />
+      <Route path="/contato" element={<ContatoPage />} />
+      <Route path="/sobre" element={<QuemSomosPage />} />
       <Route path="*" element={<NotFoundPage />} />
     </Routes>
   </Router>

@@ -6,7 +6,7 @@ const AnimalModel = function (animal) {
   this.sexo = animal.sexo;
   this.idade = animal.idade;
   this.especie = animal.especie;
-   this.foto = animal.foto;
+  //  this.foto = animal.foto;
   this.descricao = animal.descricao;
 };
 
@@ -57,12 +57,12 @@ AnimalModel.getAll = (result) => {
 //Atualizar produto por id
 AnimalModel.updateById = (id, animal, result) => {
   sql.query(
-    "UPDATE animais SET nome = ?, sexo = ?, idade = ?, foto = ?, especie = ?, descricao = ?",
+    "UPDATE animais SET nome = ?, sexo = ?, idade = ?, , especie = ?, descricao = ?",
     [
       animal.nome,
       animal.sexo,
       animal.idade,
-      animal.foto,
+      // animal.foto,
       animal.especie,
       animal.descricao,
       id,

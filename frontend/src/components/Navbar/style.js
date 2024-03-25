@@ -1,6 +1,6 @@
 import styled from "styled-components";
 export const Nav = styled.nav`
-  background-color: #625b5b;
+  background-color: pink;
   padding: 10px 20px;
   display: flex;
   justify-content: space-between;
@@ -11,13 +11,14 @@ export const Nav = styled.nav`
   }
 `;
 export const NavItems = styled.div`
-background-color: #625b5b;
+background-color: pink;
   display: flex;
   gap: 20px;
   @media (max-width: 768px) {
     display: ${(props) => (props.show ? "flex" : "none")};
     flex-direction: column;
     gap: 10px;
+    list-style: none;
   }
 `;
 export const ToggleButton = styled.button`

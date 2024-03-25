@@ -18,7 +18,7 @@ exports.create = (req, res) => {
       !req.body.nome ||
       !req.body.sexo ||
       !req.body.idade ||
-      !req.file || // Verifica se o campo de arquivo está presente
+      // !req.file || // Verifica se o campo de arquivo está presente
       !req.body.especie ||
       !req.body.descricao
     ) {
@@ -27,14 +27,14 @@ exports.create = (req, res) => {
         message: "Campos do formulário estão incompletos.",
       });
     } else {
-      const animal = new animalModel({
+      const animal = {
         nome: req.body.nome,
         sexo: req.body.sexo,
         idade: req.body.idade,
-        foto: req.file.path, // Salva o caminho do arquivo de imagem
+        // foto: req.file.path, // Salva o caminho do arquivo de imagem
         especie: req.body.especie,
         descricao: req.body.descricao,
-      });
+      };
       animalModel.create(animal, (err, data) => {
         if (err) {
           res.status(500).send({
@@ -83,7 +83,7 @@ exports.update = (req, res) => {
     !req.body.nome ||
     !req.body.sexo ||
     !req.body.idade ||
-    !req.body.foto ||
+    !req.file || // Verifica se o campo de arquivo está presente
     !req.body.especie ||
     !req.body.descricao
   ) {
@@ -91,14 +91,14 @@ exports.update = (req, res) => {
       message: "Conteúdo do corpo da requisição vazia.",
     });
   } else {
-    const animal = new animalModel({
+    const animal = {
       nome: req.body.nome,
       sexo: req.body.sexo,
       idade: req.body.idade,
-      foto: req.body.foto,
+      foto: req.file.foto, // Salva o caminho do arquivo de imagem
       especie: req.body.especie,
       descricao: req.body.descricao,
-    });
+    };
     animalModel.updateById(req.params.id, animal, (err, data) => {
       if (err) {
         if (err.type == "not_found") {
@@ -132,11 +132,11 @@ exports.delete = (req, res) => {
 };
 
 exports.deleteAll = (req, res) => {
-        animalModel.removeAll((err, data) => {
-        if (err) {
-        res.status(500).send({ message: "Erro ao deletar os animais." })
-        } else {
-        res.send({ message: "TODOS os Animais foram deletados com sucesso" });
-        }
-        }) 
+  animalModel.removeAll((err, data) => {
+    if (err) {
+      res.status(500).send({ message: "Erro ao deletar os animais." });
+    } else {
+      res.send({ message: "TODOS os Animais foram deletados com sucesso" });
+    }
+  });
 };

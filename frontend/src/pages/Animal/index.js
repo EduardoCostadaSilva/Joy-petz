@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Form, Container } from "./style";
 import api from "../../services/api";
+import Navbar from "../../components/Navbar";
 
 
 const Animal = () => {
@@ -10,7 +11,7 @@ const Animal = () => {
   const [sexo, setSexo] = useState("");
   const [idade, setIdade] = useState("");
   const [especie, setEspecie] = useState("");
-  const [foto, setFoto] = useState("");
+   const [foto, setFoto] = useState("");
   const [descricao, setDescricao] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
@@ -24,7 +25,7 @@ const Animal = () => {
         setSexo(data.sexo);
         setIdade(data.idade);
         setEspecie(data.especie);
-        setFoto(data.foto);
+         setFoto(data.foto);
         setDescricao(data.descricao);
       } catch (err) {
         setError("Houve um problema ao carregar os dados do usuario: " + err);
@@ -34,7 +35,7 @@ const Animal = () => {
   }, [id]);
   const handleAnimal = async (e) => {
     e.preventDefault();
-    if (!nome || !sexo || !idade || !especie || !foto || !descricao) {
+    if (!nome || !sexo || !idade || !especie || !descricao) {
       setError("Preencha todos os dados para se cadastrar");
     } else {
       try {
@@ -44,7 +45,7 @@ const Animal = () => {
             sexo,
             idade,
             especie,
-            foto,
+             foto,
             descricao,
           });
         } else {
@@ -53,14 +54,14 @@ const Animal = () => {
             sexo,
             idade,
             especie,
-            foto,
+             foto,
             descricao,
           });
         }
         navigate(-1);
       } catch (err) {
         console.log(err);
-        setError("Ocorreu um erro ao cadastra produto.");
+        setError("Ocorreu um erro ao cadastrar o animal.");
       }
     }
   };
@@ -72,16 +73,17 @@ const Animal = () => {
     // Verifica se algum arquivo foi selecionado
     if (e.target.files && e.target.files[0]) {
       // Cria uma URL temporária para a imagem selecionada
-      setFoto(URL.createObjectURL(e.target.files[0]));
+      // setFoto(URL.createObjectURL(e.target.files[0]));
     }
   };
 
   return (
     <>
+    <Navbar />
       <Container>
       <Form onSubmit={handleAnimal}>
   {error && <p>{error}</p>}
-  <input
+   <input
         type="file"
         onChange={handleFotoChange}
       />
@@ -90,7 +92,7 @@ const Animal = () => {
           <h2>Imagem selecionada:</h2>
           <img src={foto} alt="Imagem selecionada" style={{ maxWidth: "100%" }} />
         </div>
-      )}
+      )} 
   <input
     value={nome}
     type="text"
