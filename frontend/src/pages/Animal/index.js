@@ -4,14 +4,13 @@ import { Form, Container } from "./style";
 import api from "../../services/api";
 import Navbar from "../../components/Navbar";
 
-
 const Animal = () => {
   const { id } = useParams();
   const [nome, setNome] = useState("");
   const [sexo, setSexo] = useState("");
   const [idade, setIdade] = useState("");
   const [especie, setEspecie] = useState("");
-   const [foto, setFoto] = useState("");
+  const [foto, setFoto] = useState("");
   const [descricao, setDescricao] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
@@ -25,7 +24,7 @@ const Animal = () => {
         setSexo(data.sexo);
         setIdade(data.idade);
         setEspecie(data.especie);
-         setFoto(data.foto);
+        setFoto(data.foto);
         setDescricao(data.descricao);
       } catch (err) {
         setError("Houve um problema ao carregar os dados do usuario: " + err);
@@ -33,6 +32,8 @@ const Animal = () => {
     }
     getData();
   }, [id]);
+
+
   const handleAnimal = async (e) => {
     e.preventDefault();
     if (!nome || !sexo || !idade || !especie || !descricao) {
@@ -45,7 +46,7 @@ const Animal = () => {
             sexo,
             idade,
             especie,
-             foto,
+            foto,
             descricao,
           });
         } else {
@@ -54,7 +55,7 @@ const Animal = () => {
             sexo,
             idade,
             especie,
-             foto,
+            foto,
             descricao,
           });
         }
@@ -65,6 +66,7 @@ const Animal = () => {
       }
     }
   };
+
   const handleCancel = () => {
     navigate(-1); // Navega para a página anterior
   };
@@ -73,63 +75,63 @@ const Animal = () => {
     // Verifica se algum arquivo foi selecionado
     if (e.target.files && e.target.files[0]) {
       // Cria uma URL temporária para a imagem selecionada
-      // setFoto(URL.createObjectURL(e.target.files[0]));
+       setFoto(URL.createObjectURL(e.target.files[0]));
     }
   };
 
   return (
     <>
-    <Navbar />
+      <Navbar />
       <Container>
-      <Form onSubmit={handleAnimal}>
-  {error && <p>{error}</p>}
-   <input
-        type="file"
-        onChange={handleFotoChange}
-      />
-      {foto && (
-        <div>
-          <h2>Imagem selecionada:</h2>
-          <img src={foto} alt="Imagem selecionada" style={{ maxWidth: "100%" }} />
-        </div>
-      )} 
-  <input
-    value={nome}
-    type="text"
-    placeholder="Nome"
-    onChange={(e) => setNome(e.target.value)}
-  />
-  <input
-    value={sexo}
-    type="text"
-    placeholder="Sexo"
-    onChange={(e) => setSexo(e.target.value)}
-  />
-  <input
-    value={idade}
-    type="number"
-    placeholder="Idade"
-    onChange={(e) => setIdade(e.target.value)}
-  />
-  <input
-    value={especie}
-    type="text"
-    placeholder="Especie"
-    onChange={(e) => setEspecie(e.target.value)}
-  />
-   <input
-    value={descricao}
-    type="text"
-    placeholder="Uma breve descrição sobre o animal"
-    onChange={(e) => setDescricao(e.target.value)}
-  />
-  
-  <button type="submit">Salvar</button>
-  <button type="button" onClick={handleCancel}>
-    Cancelar
-  </button>
-</Form>
+        <Form onSubmit={handleAnimal}>
+          {error && <p>{error}</p>}
+          <input type="file" onChange={handleFotoChange} />
+          {foto && (
+            <div>
+              <h2>Imagem selecionada:</h2>
+              <img
+                src={foto}
+                alt="Imagem selecionada"
+                style={{ maxWidth: "100%" }}
+              />
+            </div>
+          )}
+          <input
+            value={nome}
+            type="text"
+            placeholder="Nome"
+            onChange={(e) => setNome(e.target.value)}
+          />
+          <input
+            value={sexo}
+            type="text"
+            placeholder="Sexo"
+            onChange={(e) => setSexo(e.target.value)}
+          />
+          <input
+            value={idade}
+            type="number"
+            placeholder="Idade"
+            onChange={(e) => setIdade(e.target.value)}
+          />
+          <input
+            value={especie}
+            type="text"
+            placeholder="Especie"
+            onChange={(e) => setEspecie(e.target.value)}
+          />
+          <input
+            value={descricao}
+            type="text"
+            placeholder="Uma breve descrição sobre o animal"
+            onChange={(e) => setDescricao(e.target.value)}
+          />
 
+          <button type="submit">Salvar</button>
+          <button type="button" onClick={handleCancel}>
+            Cancelar
+          </button>
+        </Form>
       </Container>
     </>
   );

@@ -6,7 +6,7 @@ const AnimalModel = function (animal) {
   this.sexo = animal.sexo;
   this.idade = animal.idade;
   this.especie = animal.especie;
-  //  this.foto = animal.foto;
+  this.foto = animal.foto;
   this.descricao = animal.descricao;
 };
 
@@ -62,7 +62,7 @@ AnimalModel.updateById = (id, animal, result) => {
       animal.nome,
       animal.sexo,
       animal.idade,
-      // animal.foto,
+      animal.foto,
       animal.especie,
       animal.descricao,
       id,

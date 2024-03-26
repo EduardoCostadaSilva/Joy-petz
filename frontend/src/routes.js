@@ -14,7 +14,7 @@ import Usuarios from "./pages/Usuarios";
 import Animal from "./pages/Animal";
 import ContactScreen from "./pages/Contato";
 import QuemSomos from "./pages/QuemSomos";
-import Perfil from "./pages/Perfil";
+
 
 
 
@@ -25,7 +25,6 @@ const ContatoPage = () => <ContactScreen />;
 const AnimalPage = () => <Animal />;
 const QuemSomosPage = () => <QuemSomos />;
 const LogOutPage = () => <Logout />;
-const PerfilPage = () => <Perfil />;
 const NotFoundPage = () => <h1>Página não encontrada.</h1>;
 const AppPage = () => {
   if (!isAuthenticated()) {
@@ -46,7 +45,7 @@ const Rotas = () => (
       <Route path="/doar" element={<AnimalPage />} />
       <Route path="/contato" element={<ContatoPage />} />
       <Route path="/sobre" element={<QuemSomosPage />} />
-      <Route path="/perfil" element={<PerfilPage />} />
+    
       <Route path="*" element={<NotFoundPage />} />
     </Routes>
   </Router>

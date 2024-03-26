@@ -2,7 +2,7 @@ const animalModel = require("../models/animal.model.js");
 const multer = require('multer');
 
 // Configuração do multer para salvar as imagens no diretório 'uploads'
-const upload = multer({ dest: 'uploads/' });
+const upload = multer({ dest: 'animais/' });
 
 // Middleware do multer para o campo 'foto' do formulário
 const uploadSingle = upload.single('foto');
@@ -18,7 +18,7 @@ exports.create = (req, res) => {
       !req.body.nome ||
       !req.body.sexo ||
       !req.body.idade ||
-      // !req.file || // Verifica se o campo de arquivo está presente
+       !req.file || // Verifica se o campo de arquivo está presente
       !req.body.especie ||
       !req.body.descricao
     ) {
@@ -31,7 +31,7 @@ exports.create = (req, res) => {
         nome: req.body.nome,
         sexo: req.body.sexo,
         idade: req.body.idade,
-        // foto: req.file.path, // Salva o caminho do arquivo de imagem
+         foto: req.file.path, // Salva o caminho do arquivo de imagem
         especie: req.body.especie,
         descricao: req.body.descricao,
       };
@@ -95,7 +95,7 @@ exports.update = (req, res) => {
       nome: req.body.nome,
       sexo: req.body.sexo,
       idade: req.body.idade,
-      foto: req.file.foto, // Salva o caminho do arquivo de imagem
+      foto: req.file, // Salva o caminho do arquivo de imagem
       especie: req.body.especie,
       descricao: req.body.descricao,
     };
