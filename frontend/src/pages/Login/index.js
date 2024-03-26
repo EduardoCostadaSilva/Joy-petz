@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import api from "../../services/api";
 import { Container, Form } from "./style";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import Navbar from "../../components/Navbar";
 
 const SignIn = () => {
   const [email, setEmail] = useState("");
