@@ -7,9 +7,7 @@ const QuemSomos = () => {
   return (
     <Body>
       <Navbar />
-
       <h1>
-        {" "}
         <PeopleIcon sx={{ color: "#f34f8b" }} />
         Quem Somos
       </h1>
