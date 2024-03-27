@@ -49,7 +49,7 @@ const Animal = () => {
             sexo,
             idade,
             especie,
-            foto,
+            //foto,
             descricao,
           });
         } else {
@@ -58,7 +58,7 @@ const Animal = () => {
             sexo,
             idade,
             especie,
-            foto,
+            //foto,
             descricao,
           });
         }
@@ -74,13 +74,20 @@ const Animal = () => {
     navigate(-1); // Navega para a página anterior
   };
 
- const handleClick = () => {
-    //console.log("handleClick working!")
-    axios.post("http://localhost:3077/animais", image)
-    .then(res => {
-      console.log('Axios response: ', res)
-    })
- }
+const handleClick = async () => {
+  try {
+    const formData = new FormData();
+    formData.append('my-image-file', image); // Certifique-se de usar o nome do campo correto
+    const response = await axios.post("http://localhost:3077/image-upload", formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data' // Certifique-se de definir o cabeçalho correto para enviar arquivos
+      }
+    });
+    console.log('Axios response: ', response);
+  } catch (error) {
+    console.error('Erro ao fazer upload da imagem:', error);
+  }
+}
 
  const handleFileInput = (e) => {
   console.log('handleFile funcionando');
@@ -98,7 +105,8 @@ const Animal = () => {
       <Container>
         <Form onSubmit={handleAnimal}>
           {error && <p>{error}</p>}
-          <input type="file"  onChange={handleFileInput} onClick={handleClick}/>
+          <button onClick={handleClick}>Enviar</button>
+          <input type="file"  onChange={handleFileInput} />
           <input
             value={nome}
             type="text"
