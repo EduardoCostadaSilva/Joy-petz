@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { FaEdit, FaWindowClose, FaExclamation } from "react-icons/fa";
+import { FaWindowClose, FaExclamation } from "react-icons/fa";
 import api from "../../services/api";
 import { UsuarioContainer } from "./style";
 import Navbar from "../../components/Navbar";
@@ -51,7 +51,6 @@ const Usuarios = () => {
           <span>ID</span>
           <span>Email</span>
           <span>Tipo</span>
-          <span>Editar</span>
           <span>Excluir</span>
         </div>
         {usuarios.map((usuario, index) => (
@@ -59,9 +58,9 @@ const Usuarios = () => {
             <span>{usuario.idusuario}</span>
             <span>{usuario.email}</span>
             <span>{usuario.tipo}</span>
-            <Link to={`/usuarios/${usuario.idusuario}`}>
+            {/*<Link to={`/usuarios/${usuario.idusuario}`}>
               <FaEdit size={16} />
-            </Link>
+        </Link>*/}
             <Link
               onClick={handleDeleteAsk}
               to={`/usuarios/${usuario.idusuario}`}

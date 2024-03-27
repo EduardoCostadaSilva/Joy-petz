@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import api from "../../services/api";
-import Logo from "../../img/logo_joypetz.png";
 import { A, DIV, H2, P, UL } from "./style";
 import { Link } from "react-router-dom";
 import { Box, Modal, Typography } from "@mui/material";

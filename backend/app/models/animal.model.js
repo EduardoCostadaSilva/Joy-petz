@@ -1,6 +1,6 @@
 const sql = require("../configs/db");
 
-//Construtor
+// Construtor
 const AnimalModel = function (animal) {
   this.nome = animal.nome;
   this.sexo = animal.sexo;
@@ -10,7 +10,7 @@ const AnimalModel = function (animal) {
   this.descricao = animal.descricao;
 };
 
-//Cria novo produto no banco
+// Cria um novo animal no banco de dados
 AnimalModel.create = (animal, result) => {
   sql.query("INSERT INTO animais SET ?", animal, (err, res) => {
     if (err) {
@@ -18,21 +18,21 @@ AnimalModel.create = (animal, result) => {
       result(err, null);
       return;
     }
-    console.log("Animal postado: ", { idanimal: res.insertId, ...animal });
+    console.log("Animal criado: ", { idanimal: res.insertId, ...animal });
     result(null, { idanimal: res.insertId, ...animal });
   });
 };
 
-//Seleciona produto por ID
+// Seleciona um animal por ID
 AnimalModel.findById = (id, result) => {
-  sql.query("SELECT * FROM animais WHERE idanimal = " + id, (err, res) => {
+  sql.query("SELECT * FROM animais WHERE idanimal = ?", id, (err, res) => {
     if (err) {
-      console.log("erro: ", err);
-      result(null, err);
+      console.log("Erro: ", err);
+      result(err, null);
       return;
     }
     if (res.length) {
-      console.log("Animal Encontrado", res[0]);
+      console.log("Animal encontrado: ", res[0]);
       result(null, res[0]);
     } else {
       result({ type: "not_found" }, null);
@@ -41,23 +41,23 @@ AnimalModel.findById = (id, result) => {
   });
 };
 
-//Seleciona todos os produtos
+// Seleciona todos os animais
 AnimalModel.getAll = (result) => {
   sql.query("SELECT * FROM animais", (err, res) => {
     if (err) {
-      console.log("erro: ", err);
-      result(null, err);
+      console.log("Erro: ", err);
+      result(err, null);
       return;
     }
-    console.log("animais: ", res);
+    console.log("Animais encontrados: ", res);
     result(null, res);
   });
 };
 
-//Atualizar produto por id
+// Atualiza um animal por ID
 AnimalModel.updateById = (id, animal, result) => {
   sql.query(
-    "UPDATE animais SET nome = ?, sexo = ?, idade = ?, , especie = ?, descricao = ?",
+    "UPDATE animais SET nome = ?, sexo = ?, idade = ?, foto = ?, especie = ?, descricao = ? WHERE idanimal = ?",
     [
       animal.nome,
       animal.sexo,
@@ -69,8 +69,8 @@ AnimalModel.updateById = (id, animal, result) => {
     ],
     (err, res) => {
       if (err) {
-        console.log("erro: ", err);
-        result(null, err);
+        console.log("Erro: ", err);
+        result(err, null);
       } else if (res.affectedRows == 0) {
         result({ type: "not_found" }, null);
       } else {
@@ -81,29 +81,33 @@ AnimalModel.updateById = (id, animal, result) => {
   );
 };
 
-//Remover produto por id
+// Remove um animal por ID
 AnimalModel.remove = (id, result) => {
   sql.query("DELETE FROM animais WHERE idanimal = ?", id, (err, res) => {
     if (err) {
-      console.log("erro: ", err);
+      console.log("Erro: ", err);
       result(err, null);
-    } else if (res.affectedRows == 0) {
-      result({ type: "not_found" }, null);
-    } else {
-      result(null, res);
+      return;
     }
+    if (res.affectedRows == 0) {
+      result({ type: "not_found" }, null);
+      return;
+    }
+    console.log("Animal deletado com o ID: ", id);
+    result(null, res);
   });
 };
 
-//Remover todos os produtos
+// Remove todos os animais
 AnimalModel.removeAll = (result) => {
-  sql.query("DELETE FROM animais ", (err, res) => {
+  sql.query("DELETE FROM animais", (err, res) => {
     if (err) {
-      console.log("erro: ", err);
-      result(err);
-    } else {
-      result(null);
+      console.log("Erro: ", err);
+      result(err, null);
+      return;
     }
+    console.log(`Todos os animais foram deletados: ${res.affectedRows}`);
+    result(null, res);
   });
 };
 

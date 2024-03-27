@@ -1,49 +1,40 @@
 const animalModel = require("../models/animal.model.js");
-const multer = require('multer');
-
-// Configuração do multer para salvar as imagens no diretório 'uploads'
-const upload = multer({ dest: 'animais/' });
-
-// Middleware do multer para o campo 'foto' do formulário
-const uploadSingle = upload.single('foto');
 
 exports.create = (req, res) => {
-  uploadSingle(req, res, function(err) {
-    if (err) {
-      // Um erro ocorreu ao fazer upload da imagem
-      return res.status(500).json({ message: 'Erro ao fazer upload da imagem.' });
-    }
+  if (!req.file) {
+    // Verifica se ocorreu um erro ao fazer upload da imagem
+    return res.status(500).json({ message: 'Erro ao fazer upload da imagem.' });
+  }
 
-    if (
-      !req.body.nome ||
-      !req.body.sexo ||
-      !req.body.idade ||
-       !req.file || // Verifica se o campo de arquivo está presente
-      !req.body.especie ||
-      !req.body.descricao
-    ) {
-      // Se algum campo estiver faltando, retorna um erro 400
-      return res.status(400).json({
-        message: "Campos do formulário estão incompletos.",
+  if (
+    !req.body.nome ||
+    !req.body.sexo ||
+    !req.body.idade ||
+    !req.body.especie ||
+    !req.body.descricao
+  ) {
+    // Se algum campo estiver faltando, retorna um erro 400
+    return res.status(400).json({
+      message: "Campos do formulário estão incompletos.",
+    });
+  }
+
+  const animal = {
+    nome: req.body.nome,
+    sexo: req.body.sexo,
+    idade: req.body.idade,
+    foto: req.file.path, // Salva o caminho do arquivo de imagem
+    especie: req.body.especie,
+    descricao: req.body.descricao,
+  };
+
+  animalModel.create(animal, (err, data) => {
+    if (err) {
+      res.status(500).send({
+        message: err.message || "Ocorreu um erro",
       });
     } else {
-      const animal = {
-        nome: req.body.nome,
-        sexo: req.body.sexo,
-        idade: req.body.idade,
-         foto: req.file.path, // Salva o caminho do arquivo de imagem
-        especie: req.body.especie,
-        descricao: req.body.descricao,
-      };
-      animalModel.create(animal, (err, data) => {
-        if (err) {
-          res.status(500).send({
-            message: err.message || "Ocorreu um erro",
-          });
-        } else {
-          res.send(data);
-        }
-      });
+      res.send(data);
     }
   });
 };
@@ -83,7 +74,6 @@ exports.update = (req, res) => {
     !req.body.nome ||
     !req.body.sexo ||
     !req.body.idade ||
-    !req.file || // Verifica se o campo de arquivo está presente
     !req.body.especie ||
     !req.body.descricao
   ) {
@@ -95,7 +85,6 @@ exports.update = (req, res) => {
       nome: req.body.nome,
       sexo: req.body.sexo,
       idade: req.body.idade,
-      foto: req.file, // Salva o caminho do arquivo de imagem
       especie: req.body.especie,
       descricao: req.body.descricao,
     };

@@ -1,50 +1,59 @@
 const cors = require("cors");
 const express = require("express");
 const bodyParser = require("body-parser");
-const multer = require("multer");
+const multer = require('multer')
 const app = express();
 
 //parser para requisições content-type:
 //application/x-www-form-urlencoded-json
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Methods", "GET, PUT, POST, DELETE");
-  app.use(cors());
-  next();
-});
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, "uploads/"); // Indica o diretório de destino
-  },
-  filename: function (req, file, cb) {
-    // Gera um nome de arquivo único
-    cb(null, Date.now() + "-" + file.originalname);
-  },
-});
+const corsOrigin = 'http://localhost:3077';
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Methods", "GET, PUT, POST, DELETE");
+  app.use(cors({
+  origin: [corsOrigin],
+  methods:['GET', 'POST'],
+  credentials: true
+}))
+  next();
+ });
 
-const upload = multer({ dest: "animais/" });
-
-app.post("/animais", upload.single("file"), (req, res) => {
-  // Aqui você deve salvar o arquivo no banco de dados
-  // req.file contém as informações do arquivo enviado
-  console.log("File uploaded:", req.file);
-  res.json({ message: "Arquivo enviado com sucesso." });
-});
 
 //linhas das rotas
 require("./app/routes/animal.routes")(app);
 require("./app/routes/user_animal.routes")(app);
 require("./app/routes/usuario.routes.js")(app);
 
+const imageUploadPath = 'C:/Users/eduardo.silva29/Documentos/Joy_petz/backend/animais';
+
+const storage = multer.diskStorage({
+  destination: function(req, file, cb) {
+    cb(null, imageUploadPath)
+  },
+  filename: function(req, file, cb) {
+    cb(null, `${file.fieldname}_dateVal_${Date.now()}_${file.originalname}`)
+  }
+})
+
+const imageUpload = multer({storage: storage})
+
+//ADD EXPRESSS ROUTE
+app.post('/image-upload', imageUpload.array("my-image-file"), (req, res) => {
+  console.log('POST request received to /image-upload.');
+  console.log('Axios POST body: ', req.body);
+  res.send('POST request recieved on server to /image-upload.');
+})
+
+
 app.get("/", (req, res) => {
   res.json({
     message: "API JP funcionando",
   });
 });
+
 app.listen(3077, () => {
   console.log("Servidor rodando na porta 3077");
 });

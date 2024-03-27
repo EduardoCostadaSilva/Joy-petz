@@ -3,8 +3,10 @@ import { useNavigate, useParams } from "react-router-dom";
 import { Form, Container } from "./style";
 import api from "../../services/api";
 import Navbar from "../../components/Navbar";
+import axios from "axios";
 
 const Animal = () => {
+
   const { id } = useParams();
   const [nome, setNome] = useState("");
   const [sexo, setSexo] = useState("");
@@ -12,6 +14,7 @@ const Animal = () => {
   const [especie, setEspecie] = useState("");
   const [foto, setFoto] = useState("");
   const [descricao, setDescricao] = useState("");
+  const [image, setImage] = useState(null);
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
@@ -36,7 +39,7 @@ const Animal = () => {
 
   const handleAnimal = async (e) => {
     e.preventDefault();
-    if (!nome || !sexo || !idade || !especie || !descricao) {
+    if (!nome || !sexo || !idade || !especie || !descricao || !foto) {
       setError("Preencha todos os dados para se cadastrar");
     } else {
       try {
@@ -71,13 +74,23 @@ const Animal = () => {
     navigate(-1); // Navega para a página anterior
   };
 
-  const handleFotoChange = (e) => {
-    // Verifica se algum arquivo foi selecionado
-    if (e.target.files && e.target.files[0]) {
-      // Cria uma URL temporária para a imagem selecionada
-       setFoto(URL.createObjectURL(e.target.files[0]));
-    }
-  };
+ const handleClick = () => {
+    //console.log("handleClick working!")
+    axios.post("http://localhost:3077/animais", image)
+    .then(res => {
+      console.log('Axios response: ', res)
+    })
+ }
+
+ const handleFileInput = (e) => {
+  console.log('handleFile funcionando');
+  console.log(e.target.files[0]);
+     const formData = new FormData(); 
+     //FILE INFO NAME WILL BE "my-image-file"
+     formData.append('my-image-file', e.target.files[0], e.target.files[0].name);
+     setImage(formData);
+ }
+
 
   return (
     <>
@@ -85,17 +98,7 @@ const Animal = () => {
       <Container>
         <Form onSubmit={handleAnimal}>
           {error && <p>{error}</p>}
-          <input type="file" onChange={handleFotoChange} />
-          {foto && (
-            <div>
-              <h2>Imagem selecionada:</h2>
-              <img
-                src={foto}
-                alt="Imagem selecionada"
-                style={{ maxWidth: "100%" }}
-              />
-            </div>
-          )}
+          <input type="file"  onChange={handleFileInput} onClick={handleClick}/>
           <input
             value={nome}
             type="text"
@@ -136,4 +139,5 @@ const Animal = () => {
     </>
   );
 };
+
 export default Animal;
