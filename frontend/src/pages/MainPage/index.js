@@ -62,7 +62,7 @@ const MainPage = () => {
                 {" "}
                 {/* Altere esta linha para passar o animal atual */}
                 <Link to={animal.id}>
-                  <button>Ver mais</button>
+                  Ver mais
                 </Link>
               </A>
             </div>
@@ -81,16 +81,16 @@ const MainPage = () => {
               {currentAnimal.nome}
             </Typography>
             <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-              sexo:{currentAnimal.sexo}
+              sexo: {currentAnimal.sexo}
             </Typography>
             <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-              idade:{currentAnimal.idade}
+              idade: {currentAnimal.idade} ano(s)
             </Typography>
             <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-              especie:{currentAnimal.especie}
+              especie: {currentAnimal.especie}
             </Typography>
             <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-              descricao:{currentAnimal.descricao}
+              descricao: {currentAnimal.descricao}
             </Typography>
           </Box>
         </Modal>

@@ -39,7 +39,7 @@ const Animal = () => {
 
   const handleAnimal = async (e) => {
     e.preventDefault();
-    if (!nome || !sexo || !idade || !especie || !descricao || !foto) {
+    if (!nome || !sexo || !idade || !especie || !descricao) {
       setError("Preencha todos os dados para se cadastrar");
     } else {
       try {
@@ -78,7 +78,7 @@ const handleClick = async () => {
   try {
     const formData = new FormData();
     formData.append('my-image-file', image); // Certifique-se de usar o nome do campo correto
-    const response = await axios.post("http://localhost:3077/image-upload", formData, {
+    const response = await axios.post("http://localhost:3077/uploads", formData, {
       headers: {
         'Content-Type': 'multipart/form-data' // Certifique-se de definir o cabeçalho correto para enviar arquivos
       }
@@ -105,7 +105,7 @@ const handleClick = async () => {
       <Container>
         <Form onSubmit={handleAnimal}>
           {error && <p>{error}</p>}
-          <button onClick={handleClick}>Enviar</button>
+          {/*<button onClick={handleClick}>Enviar</button>*/}
           <input type="file"  onChange={handleFileInput} />
           <input
             value={nome}
@@ -138,7 +138,7 @@ const handleClick = async () => {
             onChange={(e) => setDescricao(e.target.value)}
           />
 
-          <button type="submit">Salvar</button>
+          <button type="submit" onClick={handleClick} >Salvar</button>
           <button type="button" onClick={handleCancel}>
             Cancelar
           </button>

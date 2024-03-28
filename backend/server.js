@@ -27,23 +27,24 @@ require("./app/routes/animal.routes")(app);
 require("./app/routes/user_animal.routes")(app);
 require("./app/routes/usuario.routes.js")(app);
 
-const imageUploadPath = 'C:/Users/eduardo.silva29/Documentos/Joy_petz/backend/animais/image-upload/';
+const imageUploadPath = 'C:\\Users\\Acer\\Documents\\Joy-petz\\backend\\app\\uploads';
+
 
 const storage = multer.diskStorage({
-  destination: function(req, file, cb) {
+  destination: function(req, file, callback) {
     console.log('aqui2')
-    cb(null, imageUploadPath)
+    callback(null, imageUploadPath)
   },
-  filename: function(req, file, cb) {
+  filename: function(req, file, callback) {
     console.log('aqui');
-    cb(null, `${file.fieldname}_dateVal_${Date.now()}_${file.originalname}`)
+    callback(null, `${file.fieldname}_dateVal_${Date.now()}_${file.originalname}`)
   }
 })
 
 const imageUpload = multer({storage: storage})
 
 //ADD EXPRESSS ROUTE
-app.post('/image-upload', imageUpload.array("my-image-file"), (req, res) => {
+app.post('/uploads', imageUpload.array("my-image-file"), (req, res) => {
   console.log('POST request received to /image-upload.');
   console.log('Axios POST body: ', req.body);
   res.send('POST request recieved on server to /image-upload.');
