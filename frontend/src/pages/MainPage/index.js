@@ -54,7 +54,7 @@ const MainPage = () => {
       <UL>
         {animais.map((animal) => (
           <DIV key={animal.id}>
-            <img src={imagem} width={200} height={200}></img>
+            <img src={animal.foto} width={300} height={300}></img>
             <div>
               <H2>{animal.nome}</H2>
               <P>{animal.descricao}</P>

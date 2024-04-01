@@ -77,8 +77,8 @@ const Animal = () => {
 const handleClick = async () => {
   try {
     const formData = new FormData();
-    formData.append('my-image-file', image); // Certifique-se de usar o nome do campo correto
-    const response = await axios.post("http://localhost:3077/uploads", formData, {
+    formData.append('image', image); // Certifique-se de usar o nome do campo correto
+    const response = await axios.post("http://localhost:3077/upload-image", formData, {
       headers: {
         'Content-Type': 'multipart/form-data' // Certifique-se de definir o cabeçalho correto para enviar arquivos
       }
@@ -94,7 +94,7 @@ const handleClick = async () => {
   console.log(e.target.files[0]);
      const formData = new FormData(); 
      //FILE INFO NAME WILL BE "my-image-file"
-     formData.append('my-image-file', e.target.files[0], e.target.files[0].name);
+     formData.append('image', e.target.files[0], e.target.files[0].name);
      setImage(formData);
  }
 

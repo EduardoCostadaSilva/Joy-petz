@@ -1,7 +1,7 @@
 const cors = require("cors");
 const express = require("express");
 const bodyParser = require("body-parser");
-const multer = require('multer')
+const uploadUser = require('./app/middlewares/uploadimage.js')
 const app = express();
 
 //parser para requisições content-type:
@@ -27,27 +27,20 @@ require("./app/routes/animal.routes")(app);
 require("./app/routes/user_animal.routes")(app);
 require("./app/routes/usuario.routes.js")(app);
 
-const imageUploadPath = 'C:\\Users\\Acer\\Documents\\Joy-petz\\backend\\app\\uploads';
-
-
-const storage = multer.diskStorage({
-  destination: function(req, file, callback) {
-    console.log('aqui2')
-    callback(null, imageUploadPath)
-  },
-  filename: function(req, file, callback) {
-    console.log('aqui');
-    callback(null, `${file.fieldname}_dateVal_${Date.now()}_${file.originalname}`)
-  }
-})
-
-const imageUpload = multer({storage: storage})
 
 //ADD EXPRESSS ROUTE
-app.post('/uploads', imageUpload.array("my-image-file"), (req, res) => {
-  console.log('POST request received to /image-upload.');
-  console.log('Axios POST body: ', req.body);
-  res.send('POST request recieved on server to /image-upload.');
+app.post('/upload-image', uploadUser.single("image"), async (req, res) => {
+  if(req.file) {
+    return res.json({
+      erro: false,
+    mensagem:"Upload sendo relizado!!"
+  })
+  }
+  return res.status(400).json({
+    erro:true,
+    mensagem : "Erro: Upload não realizado com sucesso!"
+  });
+
 })
 
 
