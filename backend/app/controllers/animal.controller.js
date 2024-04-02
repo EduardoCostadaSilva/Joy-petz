@@ -1,10 +1,6 @@
 const animalModel = require("../models/animal.model.js");
 
 exports.create = (req, res) => {
-  if (!req.file) {
-    // Verifica se ocorreu um erro ao fazer upload da imagem
-    return res.status(500).json({ message: 'Erro ao fazer upload da imagem.' });
-  }
 
   if (
     !req.body.nome ||
@@ -23,7 +19,7 @@ exports.create = (req, res) => {
     nome: req.body.nome,
     sexo: req.body.sexo,
     idade: req.body.idade,
-    foto: req.file.path, // Salva o caminho do arquivo de imagem
+    //foto: req.file.path, // Salva o caminho do arquivo de imagem
     especie: req.body.especie,
     descricao: req.body.descricao,
   };

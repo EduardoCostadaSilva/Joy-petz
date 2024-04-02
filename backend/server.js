@@ -1,4 +1,4 @@
-const cors = require("cors");
+var cors = require("cors");
 const express = require("express");
 const bodyParser = require("body-parser");
 const uploadUser = require('./app/middlewares/uploadimage.js')
@@ -9,15 +9,14 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-const corsOrigin = 'http://localhost:3077';
+
+
+
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Methods", "GET, PUT, POST, DELETE");
-  app.use(cors({
-  origin: [corsOrigin],
-  methods:['GET', 'POST'],
-  credentials: true
-}))
+  res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  app.use(cors());
   next();
  });
 

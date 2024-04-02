@@ -12,9 +12,8 @@ const Animal = () => {
   const [sexo, setSexo] = useState("");
   const [idade, setIdade] = useState("");
   const [especie, setEspecie] = useState("");
-  const [foto, setFoto] = useState("");
   const [descricao, setDescricao] = useState("");
-  const [image, setImage] = useState(null);
+  const [image, setImage] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
@@ -27,8 +26,8 @@ const Animal = () => {
         setSexo(data.sexo);
         setIdade(data.idade);
         setEspecie(data.especie);
-        setFoto(data.foto);
         setDescricao(data.descricao);
+        setImage(data.foto);
       } catch (err) {
         setError("Houve um problema ao carregar os dados do usuario: " + err);
       }
@@ -39,6 +38,7 @@ const Animal = () => {
 
   const handleAnimal = async (e) => {
     e.preventDefault();
+    console.log(image)
     if (!nome || !sexo || !idade || !especie || !descricao) {
       setError("Preencha todos os dados para se cadastrar");
     } else {
@@ -103,10 +103,15 @@ const handleClick = async () => {
     <>
       <Navbar />
       <Container>
+        <Form>
+        <input type="file" name="image" onChange={e => setImage(e.target.files[0])} />
+          <button onClick={handleClick} type="submit">Enviar Imagem</button>
+        </Form>
+        
         <Form onSubmit={handleAnimal}>
           {error && <p>{error}</p>}
-          {/*<button onClick={handleClick}>Enviar</button>*/}
-          <input type="file"  onChange={handleFileInput} />
+          
+          
           <input
             value={nome}
             type="text"
@@ -138,7 +143,7 @@ const handleClick = async () => {
             onChange={(e) => setDescricao(e.target.value)}
           />
 
-          <button type="submit" onClick={handleClick} >Salvar</button>
+          <button type="submit" >Salvar</button>
           <button type="button" onClick={handleCancel}>
             Cancelar
           </button>
