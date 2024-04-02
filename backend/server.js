@@ -32,7 +32,7 @@ app.post('/upload-image', uploadUser.single("image"), async (req, res) => {
   if(req.file) {
     return res.json({
       erro: false,
-    mensagem:"Upload sendo relizado!!"
+      mensagem:"Upload sendo relizado!!"
   })
   }
   return res.status(400).json({

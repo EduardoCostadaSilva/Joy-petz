@@ -15,6 +15,10 @@ const Animal = () => {
   const [descricao, setDescricao] = useState("");
   const [image, setImage] = useState("");
   const [error, setError] = useState("");
+  const [status, setStatus] = useState({
+    type: '',
+    mensagem: ''
+  });
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -88,15 +92,6 @@ const handleClick = async () => {
     console.error('Erro ao fazer upload da imagem:', error);
   }
 }
-
- const handleFileInput = (e) => {
-  console.log('handleFile funcionando');
-  console.log(e.target.files[0]);
-     const formData = new FormData(); 
-     //FILE INFO NAME WILL BE "my-image-file"
-     formData.append('image', e.target.files[0], e.target.files[0].name);
-     setImage(formData);
- }
 
 
   return (
