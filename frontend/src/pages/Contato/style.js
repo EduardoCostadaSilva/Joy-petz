@@ -1,26 +1,5 @@
-
-export const contactScreenStyles = {
+import styled from "styled-components";
+export const Body = styled.body`
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   
-  container: {
-    marginLeft: "20px",
-
-    color: "rgb(247, 79, 139)",
-  },
-  hr: {
-    width: "100%",
-    borderTop: "1px solid black",
-  },
-  paragraph: {
-    maxWidth: "1000px",
-  },
-
-  body: {
-    
-    backgroundColor: "black",
-    minHeight: "100vh",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "",
-    fontSize: "40px",
-  },
-};
+`;

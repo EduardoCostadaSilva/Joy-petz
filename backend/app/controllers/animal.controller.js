@@ -1,13 +1,14 @@
 const animalModel = require("../models/animal.model.js");
 
 exports.create = (req, res) => {
-
   if (
     !req.body.nome ||
     !req.body.sexo ||
     !req.body.idade ||
     !req.body.especie ||
-    !req.body.descricao
+    !req.body.descricao ||
+    !req.body.endereco ||
+    !req.body.contato
   ) {
     // Se algum campo estiver faltando, retorna um erro 400
     return res.status(400).json({
@@ -19,9 +20,11 @@ exports.create = (req, res) => {
     nome: req.body.nome,
     sexo: req.body.sexo,
     idade: req.body.idade,
-    //foto: req.file.path, // Salva o caminho do arquivo de imagem
+    foto: req.file.path, // Salva o caminho do arquivo de imagem
     especie: req.body.especie,
     descricao: req.body.descricao,
+    endereco: req.body.endereco,
+    contato: req.body.contato,
   };
 
   animalModel.create(animal, (err, data) => {
@@ -71,7 +74,9 @@ exports.update = (req, res) => {
     !req.body.sexo ||
     !req.body.idade ||
     !req.body.especie ||
-    !req.body.descricao
+    !req.body.descricao ||
+    !req.body.endereco ||
+    !req.body.contato
   ) {
     res.status(400).send({
       message: "Conteúdo do corpo da requisição vazia.",
@@ -81,8 +86,11 @@ exports.update = (req, res) => {
       nome: req.body.nome,
       sexo: req.body.sexo,
       idade: req.body.idade,
+      foto: req.file.path, // Salva o caminho do arquivo de imagem
       especie: req.body.especie,
       descricao: req.body.descricao,
+      endereco: req.body.endereco,
+      contato: req.body.contato,
     };
     animalModel.updateById(req.params.id, animal, (err, data) => {
       if (err) {

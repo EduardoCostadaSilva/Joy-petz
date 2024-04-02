@@ -30,6 +30,7 @@ const SignIn = () => {
           <AccountCircleIcon
             sx={{
               fontSize: 300,
+              color:" #f34f8b",
             }}
           ></AccountCircleIcon>
 

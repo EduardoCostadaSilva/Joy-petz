@@ -10,7 +10,8 @@ const MainPage = () => {
   const [loading, setLoading] = useState(true);
   const [open, setOpen] = React.useState(false);
   const [currentAnimal, setCurrentAnimal] = useState(null); // Novo estado para o animal atual
-  const [imagem, setImagem] = useState(null);
+  const [image, setImage] = useState("");
+
 
   const handleOpen = (animal) => {
     // Modifique esta função para aceitar um animal
@@ -31,13 +32,15 @@ const MainPage = () => {
     boxShadow: 24,
     p: 4,
   };
- 
-
 
   useEffect(() => {
     async function getData() {
+
       const response = await api.get("/animais");
+      const blob = new Blob([response.data]);
+      const url = URL.createObjectURL(blob);
       setAnimais(response.data);
+      setImage(url);
       setLoading(false);
     }
     getData();
@@ -47,6 +50,7 @@ const MainPage = () => {
     return <p>Carregando animais...</p>;
   }
 
+
   return (
     <div>
       <Navbar />
@@ -54,18 +58,17 @@ const MainPage = () => {
       <UL>
         {animais.map((animal) => (
           <DIV key={animal.id}>
-            <img src={animal.foto} width={300} height={300}></img>
-            <div>
+
+              <img src={image} width={300} height={300} />
+
               <H2>{animal.nome}</H2>
               <P>{animal.descricao}</P>
               <A onClick={() => handleOpen(animal)}>
                 {" "}
                 {/* Altere esta linha para passar o animal atual */}
-                <Link to={animal.id}>
-                  Ver mais
-                </Link>
+                <Link>Ver mais</Link>
               </A>
-            </div>
+            
           </DIV>
         ))}
       </UL>
@@ -78,19 +81,25 @@ const MainPage = () => {
         >
           <Box sx={style}>
             <Typography id="modal-modal-title" variant="h6" component="h2">
-              {currentAnimal.nome}
+             <b> {currentAnimal.nome}</b>
             </Typography>
             <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-              sexo: {currentAnimal.sexo}
+             <b> sexo:</b> {currentAnimal.sexo}
             </Typography>
             <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-              idade: {currentAnimal.idade} ano(s)
+              <b>idade:</b> {currentAnimal.idade} ano(s)
             </Typography>
             <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-              especie: {currentAnimal.especie}
+             <b> especie:</b> {currentAnimal.especie}
             </Typography>
             <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-              descricao: {currentAnimal.descricao}
+             <b>descricao:</b>  {currentAnimal.descricao}
+            </Typography>
+            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+              <b>contato:</b> {currentAnimal.contato}
+            </Typography>
+            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+             <b> endereco: </b>{currentAnimal.endereco}
             </Typography>
           </Box>
         </Modal>

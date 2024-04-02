@@ -3,6 +3,7 @@ export const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
   height: 100vh;
 `;
 export const Form = styled.form`
@@ -38,9 +39,9 @@ export const Form = styled.form`
     }
   }
   button {
-    color: #fff;
+    color: white;
     font-size: 16px;
-    background: #fc6963;
+    background: #f34f8b;
     height: 56px;
     border: 0;
     border-radius: 5px;

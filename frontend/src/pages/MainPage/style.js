@@ -1,6 +1,11 @@
 import styled from "styled-components";
 
+export const Body = styled.body`
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  
+`;
 export const DIV = styled.div`
+font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   width: 300px;
   heigth: 300px; 
   border:2px solid black;
@@ -12,10 +17,12 @@ export const DIV = styled.div`
 `;
 
 export const P = styled.p`
+font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   font-size:15px;
 `
 
 export const A = styled.p`
+font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   border:1px solid;
   border-radius:5px;
   margin-right:70px;
@@ -24,11 +31,13 @@ export const A = styled.p`
 `
 
 export const H2 = styled.p`
+font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   font-size:30px;
   font-weight: bold;
 `
 
 export const UL = styled.ul`
+font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 display: flex;
 flex-direction: row;
 

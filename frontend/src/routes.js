@@ -11,14 +11,14 @@ import MainPage from "./pages/MainPage";
 import SignUp from "./pages/SignUp";
 import Usuarios from "./pages/Usuarios";
 import Animal from "./pages/Animal";
-import ContactScreen from "./pages/Contato";
+import Contato from "./pages/Contato";
 import QuemSomos from "./pages/QuemSomos";
 import Perfil from "./pages/Perfil";
 
 const LoginPage = () => <Login />;
 const SignUpPage = () => <SignUp />;
 const UsuariosPage = () => <Usuarios />;
-const ContatoPage = () => <ContactScreen />;
+const ContatoPage = () => <Contato />;
 const AnimalPage = () => <Animal />;
 const QuemSomosPage = () => <QuemSomos />;
 const PerfilPage = () => <Perfil/>;

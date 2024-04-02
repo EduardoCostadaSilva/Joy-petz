@@ -9,7 +9,7 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-
+//
 
 
 app.use((req, res, next) => {
@@ -41,7 +41,6 @@ app.post('/upload-image', uploadUser.single("image"), async (req, res) => {
   });
 
 })
-
 
 app.get("/", (req, res) => {
   res.json({

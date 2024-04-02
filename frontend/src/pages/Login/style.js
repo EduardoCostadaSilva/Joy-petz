@@ -49,7 +49,7 @@ export const Form = styled.form`
   button {
     color: #fff;
     font-size: 16px;
-    background: #fc6963;
+    background: #f34f8b;
     height: 56px;
     border: 0;
     border-radius: 5px;

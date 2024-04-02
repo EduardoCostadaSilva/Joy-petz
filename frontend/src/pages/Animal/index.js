@@ -6,19 +6,16 @@ import Navbar from "../../components/Navbar";
 import axios from "axios";
 
 const Animal = () => {
-
   const { id } = useParams();
   const [nome, setNome] = useState("");
   const [sexo, setSexo] = useState("");
   const [idade, setIdade] = useState("");
   const [especie, setEspecie] = useState("");
   const [descricao, setDescricao] = useState("");
-  const [image, setImage] = useState("");
+  const [foto, setFoto] = useState("");
+  const [endereco, setEndereco] = useState("");
+  const [contato, setContato] = useState("");
   const [error, setError] = useState("");
-  const [status, setStatus] = useState({
-    type: '',
-    mensagem: ''
-  });
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -31,7 +28,9 @@ const Animal = () => {
         setIdade(data.idade);
         setEspecie(data.especie);
         setDescricao(data.descricao);
-        setImage(data.foto);
+        setFoto(data.foto);
+        setEndereco(data.endereco);
+        setContato(data.contato);
       } catch (err) {
         setError("Houve um problema ao carregar os dados do usuario: " + err);
       }
@@ -39,11 +38,17 @@ const Animal = () => {
     getData();
   }, [id]);
 
-
   const handleAnimal = async (e) => {
     e.preventDefault();
-    console.log(image)
-    if (!nome || !sexo || !idade || !especie || !descricao) {
+    if (
+      !nome ||
+      !sexo ||
+      !idade ||
+      !especie ||
+      !descricao ||
+      !contato ||
+      !endereco
+    ) {
       setError("Preencha todos os dados para se cadastrar");
     } else {
       try {
@@ -53,8 +58,10 @@ const Animal = () => {
             sexo,
             idade,
             especie,
-            //foto,
+            foto,
             descricao,
+            contato,
+            endereco,
           });
         } else {
           await api.put(`/animais/${id}`, {
@@ -62,8 +69,10 @@ const Animal = () => {
             sexo,
             idade,
             especie,
-            //foto,
+            foto,
             descricao,
+            contato,
+            endereco,
           });
         }
         navigate(-1);
@@ -78,35 +87,39 @@ const Animal = () => {
     navigate(-1); // Navega para a página anterior
   };
 
-const handleClick = async () => {
-  try {
-    const formData = new FormData();
-    formData.append('image', image); // Certifique-se de usar o nome do campo correto
-    const response = await axios.post("http://localhost:3077/upload-image", formData, {
-      headers: {
-        'Content-Type': 'multipart/form-data' // Certifique-se de definir o cabeçalho correto para enviar arquivos
-      }
-    });
-    console.log('Axios response: ', response);
-  } catch (error) {
-    console.error('Erro ao fazer upload da imagem:', error);
-  }
-}
-
-
+  /* const handleClick = async () => {
+    try {
+      const formData = new FormData();
+      formData.append("image", image); // Certifique-se de usar o nome do campo correto
+      const response = await axios.post(
+        "http://localhost:3077/upload-image",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data", // Certifique-se de definir o cabeçalho correto para enviar arquivos
+          },
+        }
+      );
+      console.log("Axios response: ", response);
+    } catch (error) {
+      console.error("Erro ao fazer upload da imagem:", error);
+    }
+  };
+  */
   return (
     <>
       <Navbar />
       <Container>
-        <Form>
-        <input type="file" name="image" onChange={e => setImage(e.target.files[0])} />
-          <button onClick={handleClick} type="submit">Enviar Imagem</button>
-        </Form>
-        
-        <Form onSubmit={handleAnimal}>
+
+
+        <Form onSubmit={handleAnimal} enctype="multipart/form-data">
           {error && <p>{error}</p>}
-          
-          
+          <input
+            type="file"
+            name="image"
+            value={foto}
+            onChange={(e) => setFoto(e.target.value)}
+          />
           <input
             value={nome}
             type="text"
@@ -137,8 +150,20 @@ const handleClick = async () => {
             placeholder="Uma breve descrição sobre o animal"
             onChange={(e) => setDescricao(e.target.value)}
           />
+          <input
+            value={contato}
+            type="tel"
+            placeholder="número para contato"
+            onChange={(e) => setContato(e.target.value)}
+          />
+          <input
+            value={endereco}
+            type="text"
+            placeholder="endereço do dono"
+            onChange={(e) => setEndereco(e.target.value)}
+          />
 
-          <button type="submit" >Salvar</button>
+          <button type="submit">Salvar</button>
           <button type="button" onClick={handleCancel}>
             Cancelar
           </button>

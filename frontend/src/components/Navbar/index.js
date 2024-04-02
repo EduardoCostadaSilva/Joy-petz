@@ -19,7 +19,7 @@ const Navbar = () => {
         <Link to="/contato">Contato</Link>
         <Link to="/sobre">Quem Somos</Link>
         <Link to="/logout">Logout</Link>
-        <Link to="/perfil">Perfil</Link>
+        
       </NavItems>
     </Nav>
   );

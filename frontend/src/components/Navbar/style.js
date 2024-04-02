@@ -1,5 +1,6 @@
 import styled from "styled-components";
 export const Nav = styled.nav`
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
   background-color: pink;
   padding: 10px 20px;
   display: flex;
@@ -11,7 +12,7 @@ export const Nav = styled.nav`
   }
 `;
 export const NavItems = styled.div`
-background-color: pink;
+  background-color: pink;
   display: flex;
   gap: 20px;
   @media (max-width: 768px) {
@@ -22,7 +23,7 @@ background-color: pink;
   }
 `;
 export const ToggleButton = styled.button`
-background-color: #625b5b;
+  background-color: #625b5b;
   display: none;
   @media (max-width: 768px) {
     display: block;

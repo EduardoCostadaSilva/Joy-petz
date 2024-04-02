@@ -32,6 +32,7 @@ const SignUp = () => {
         <AccountCircleIcon
           sx={{
             fontSize: 300,
+            color:" #f34f8b",
           }}
         ></AccountCircleIcon>
         {error && <p>{error}</p>}
@@ -56,7 +57,7 @@ const SignUp = () => {
           onChange={(e) => setTipo(e.target.value)}
         />
         <button type="submit">Cadastro de Usuário</button>
-        <Link to="/signin">Fazer Login</Link>
+        <Link to="/">Fazer Login</Link>
       </Form>
     </Container>
   );

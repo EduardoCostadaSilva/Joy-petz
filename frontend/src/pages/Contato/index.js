@@ -1,26 +1,22 @@
 import React from "react";
-
-import { contactScreenStyles } from "./style";
+import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
+import { Body } from "./style";
 import Navbar from "../../components/Navbar";
 
-const ContactScreen = () => {
+const Contato = () => {
   return (
-    <>
+    <Body>
       <Navbar />
-      <div style={contactScreenStyles.body} >
-        <div style={contactScreenStyles.container}>
-          <h1>Contato</h1>
-          <hr style={contactScreenStyles.hr} />
-          <p style={contactScreenStyles.paragraph}>
-            Se tiver alguma dúvida, não hesite em nos contatar!
-          </p>
-          <p style={contactScreenStyles.paragraph}>
-            E-mail : suporte.joypetz@gmail.com
-          </p>
-        </div>
-      </div>
-    </>
+      <h1>
+        <LocalPhoneIcon sx={{ color: "#f34f8b" }} />
+        Contato
+      </h1>
+
+      <h2>Se estiver com alguma dúvida,não hesite em nos contatar!</h2>
+      <p>
+        E-mail : suporte.joypetz@gmail.com
+      </p>
+    </Body>
   );
 };
-
-export default ContactScreen;
+export default Contato;
