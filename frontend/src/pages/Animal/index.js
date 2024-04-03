@@ -12,7 +12,7 @@ const Animal = () => {
   const [idade, setIdade] = useState("");
   const [especie, setEspecie] = useState("");
   const [descricao, setDescricao] = useState("");
-  const [foto, setFoto] = useState("");
+  const [image, setImage] = useState("");
   const [endereco, setEndereco] = useState("");
   const [contato, setContato] = useState("");
   const [error, setError] = useState("");
@@ -28,7 +28,7 @@ const Animal = () => {
         setIdade(data.idade);
         setEspecie(data.especie);
         setDescricao(data.descricao);
-        setFoto(data.foto);
+        setImage(data.foto);
         setEndereco(data.endereco);
         setContato(data.contato);
       } catch (err) {
@@ -58,7 +58,7 @@ const Animal = () => {
             sexo,
             idade,
             especie,
-            foto,
+            //foto,
             descricao,
             contato,
             endereco,
@@ -69,7 +69,7 @@ const Animal = () => {
             sexo,
             idade,
             especie,
-            foto,
+            //foto,
             descricao,
             contato,
             endereco,
@@ -87,7 +87,7 @@ const Animal = () => {
     navigate(-1); // Navega para a página anterior
   };
 
-  /* const handleClick = async () => {
+   const handleClick = async () => {
     try {
       const formData = new FormData();
       formData.append("image", image); // Certifique-se de usar o nome do campo correto
@@ -105,21 +105,28 @@ const Animal = () => {
       console.error("Erro ao fazer upload da imagem:", error);
     }
   };
-  */
+  
   return (
     <>
       <Navbar />
       <Container>
-
+        <Form>
+        <input
+            type="file"
+            value={image}
+            onChange={(e) => setImage(e.target.value)}
+            />
+            <button type="submit" onClick={handleClick}>enviar arquivo</button>
+        </Form>
 
         <Form onSubmit={handleAnimal} enctype="multipart/form-data">
           {error && <p>{error}</p>}
-          <input
+          {/*<input
             type="file"
             name="image"
             value={foto}
             onChange={(e) => setFoto(e.target.value)}
-          />
+           />*/}
           <input
             value={nome}
             type="text"

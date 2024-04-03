@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import api from "../../services/api";
 import { Container, Form } from "./style";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import SignUp from "../SignUp";
 
 const SignIn = () => {
   const [email, setEmail] = useState("");
@@ -45,6 +46,8 @@ const SignIn = () => {
             onChange={(e) => setSenha(e.target.value)}
           />
           <button type="submit">Entrar</button>
+
+          <Link to="/logout">Se cadastrar</Link>
           {error && <p>{error}</p>}
         </Form>
       </Container>

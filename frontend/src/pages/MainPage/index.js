@@ -59,7 +59,7 @@ const MainPage = () => {
         {animais.map((animal) => (
           <DIV key={animal.id}>
 
-              <img src={image} width={300} height={300} />
+             <img src={image} width={300} height={300} />
 
               <H2>{animal.nome}</H2>
               <P>{animal.descricao}</P>
@@ -104,8 +104,7 @@ const MainPage = () => {
             </Typography>
           </Box>
         </Modal>
-      )}
-
+      )}<br />
     </div>
   );
 };
