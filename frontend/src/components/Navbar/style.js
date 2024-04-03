@@ -1,4 +1,5 @@
 import styled from "styled-components";
+
 export const Nav = styled.nav`
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
   background-color: pink;
@@ -11,6 +12,7 @@ export const Nav = styled.nav`
     align-items: flex-start; // Certifique-se de que os itens estejam alinhados à esquerda por padrão
   }
 `;
+
 export const NavItems = styled.div`
   background-color: pink;
   display: flex;
@@ -19,9 +21,17 @@ export const NavItems = styled.div`
     display: ${(props) => (props.show ? "flex" : "none")};
     flex-direction: column;
     gap: 10px;
-    list-style: none;
+  }
+  font-size: 20px;
+ 
+  /* Remover decoração de texto */
+  a {
+    text-decoration: none;
+     color: #f34f8b;
+     padding:2px;
   }
 `;
+
 export const ToggleButton = styled.button`
   background-color: #625b5b;
   display: none;
