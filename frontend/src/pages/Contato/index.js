@@ -13,9 +13,11 @@ const Contato = () => {
       </h1>
 
       <h2>Se estiver com alguma dúvida,não hesite em nos contatar!</h2>
+      
       <p>
-        E-mail : suportejoypetz@gmail.com
+       <a href="mailto:suportejoypetz@gmail.com"> E-mail : suportejoypetz@gmail.com</a>
       </p>
+      
     </Body>
   );
 };
