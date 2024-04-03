@@ -14,7 +14,7 @@ const Contato = () => {
 
       <h2>Se estiver com alguma dúvida,não hesite em nos contatar!</h2>
       <p>
-        E-mail : suporte.joypetz@gmail.com
+        E-mail : suportejoypetz@gmail.com
       </p>
     </Body>
   );
