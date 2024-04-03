@@ -20,7 +20,7 @@ exports.create = (req, res) => {
     nome: req.body.nome,
     sexo: req.body.sexo,
     idade: req.body.idade,
-    foto: req.file.path, // Salva o caminho do arquivo de imagem
+    //foto: req.file.path, // Salva o caminho do arquivo de imagem
     especie: req.body.especie,
     descricao: req.body.descricao,
     endereco: req.body.endereco,
@@ -86,7 +86,7 @@ exports.update = (req, res) => {
       nome: req.body.nome,
       sexo: req.body.sexo,
       idade: req.body.idade,
-      foto: req.file.path, // Salva o caminho do arquivo de imagem
+      //foto: req.file.path, // Salva o caminho do arquivo de imagem
       especie: req.body.especie,
       descricao: req.body.descricao,
       endereco: req.body.endereco,

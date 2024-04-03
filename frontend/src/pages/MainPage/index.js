@@ -68,8 +68,9 @@ const MainPage = () => {
                 {/* Altere esta linha para passar o animal atual */}
                 <Link>Ver mais</Link>
               </A>
-            
+             
           </DIV>
+         
         ))}
       </UL>
       {currentAnimal && (
@@ -104,6 +105,7 @@ const MainPage = () => {
           </Box>
         </Modal>
       )}
+
     </div>
   );
 };

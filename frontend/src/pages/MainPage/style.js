@@ -14,6 +14,7 @@ font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   min-height: '100vh';
   align-itens: center;
   margin-left:20px;
+  margin-bottom:20px;
 `;
 
 export const P = styled.p`
@@ -39,6 +40,5 @@ font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 export const UL = styled.ul`
 font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 display: flex;
-flex-direction: row;
-
+flex-direction: column;
 `
