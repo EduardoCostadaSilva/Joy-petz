@@ -87,7 +87,7 @@ const Animal = () => {
     navigate(-1); // Navega para a página anterior
   };
 
-   const handleClick = async () => {
+  const handleClick = async () => {
     try {
       const formData = new FormData();
       formData.append("image", image); // Certifique-se de usar o nome do campo correto
@@ -105,19 +105,19 @@ const Animal = () => {
       console.error("Erro ao fazer upload da imagem:", error);
     }
   };
-  
+
   return (
     <>
       <Navbar />
       <Container>
-        <Form>
+        {/*<Form>
         <input
             type="file"
             value={image}
             onChange={(e) => setImage(e.target.value)}
             />
             <button type="submit" onClick={handleClick}>enviar arquivo</button>
-        </Form>
+  </Form>*/}
 
         <Form onSubmit={handleAnimal} enctype="multipart/form-data">
           {error && <p>{error}</p>}

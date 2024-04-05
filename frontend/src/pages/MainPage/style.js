@@ -39,5 +39,5 @@ font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 export const UL = styled.ul`
 font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 display: flex;
-flex-direction: row;
+flex-direction: column;
 `

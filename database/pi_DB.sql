@@ -5,7 +5,9 @@ CREATE TABLE `animais`(
     `idade` INT NOT NULL,
     `especie` VARCHAR(100) NOT NULL,
     `foto` BLOB NOT NULL,
-    `descricao` VARCHAR(500) NOT NULL
+    `descricao` VARCHAR(500) NOT NULL,
+    `endereco` VARCHAR(200) NOT NULL,
+    `contato` VARCHAR(20) NOT NULL,
 );
 CREATE TABLE `user_animal`(
     `iduser_animal` INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
